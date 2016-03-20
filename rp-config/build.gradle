@@ -1,0 +1,11 @@
+apply from: '../gradle/publishing.gradle'
+
+modifyPom {
+    project {
+        name 'Ratpack Config'
+        description """\
+            Adds support for loading configuration from multiple sources based on Mr Haki's
+            http://mrhaki.blogspot.com/2015/11/ratpacked-externalized-application.html
+            """.stripIndent().replace('\n', ' ').trim()
+    }
+}
