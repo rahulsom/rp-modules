@@ -7,10 +7,9 @@ import ratpack.jackson.Jackson;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Properties;
+import java.io.InputStreamReader;
+import java.nio.charset.CharsetDecoder;
+import java.util.*;
 
 /**
  * Created by rahul on 3/21/16.
@@ -24,11 +23,19 @@ public class MessageHandler implements Handler {
     public void handle(Context ctx) throws Exception {
         String acceptLanguageHeader = ctx.getRequest().getHeaders().get("Accept-Language");
         Map<String, String> retval = getBundleAsMap(null);
-        Locale.LanguageRange.parse(acceptLanguageHeader).
+
+        final List<Locale.LanguageRange> locales =
+                acceptLanguageHeader == null ?
+                        new ArrayList<>() :
+                        Locale.LanguageRange.parse(acceptLanguageHeader);
+
+        locales.
                 stream().
                 sorted((o1, o2) -> o1.getWeight() - o2.getWeight() > 0 ? 1 : -1).
                 map(Locale.LanguageRange::getRange).
                 forEach(s -> retval.putAll(getBundleAsMap(s)));
+
+        ctx.getResponse().contentType("application/json;charset=utf8");
         ctx.render(Jackson.json(retval));
     }
 
@@ -38,7 +45,7 @@ public class MessageHandler implements Handler {
         InputStream ir = this.getClass().getClassLoader().getResourceAsStream(resourceName + ".properties");
         if (ir != null) {
             try {
-                prop.load(ir);
+                prop.load(new InputStreamReader(ir, "UTF-8"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
