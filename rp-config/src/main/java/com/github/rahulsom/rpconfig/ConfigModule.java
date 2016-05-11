@@ -1,6 +1,9 @@
 package com.github.rahulsom.rpconfig;
 
 import com.google.inject.AbstractModule;
+import com.google.inject.Scopes;
+import com.google.inject.TypeLiteral;
+import com.google.inject.multibindings.Multibinder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -9,18 +12,13 @@ import org.slf4j.LoggerFactory;
  *
  * @author rahul somasunderam
  */
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class ConfigModule<T> extends AbstractModule {
 
-    private Class<T> configClass;
-    private String envPrefix;
-    private String sysPrefix;
+    private final T configObject;
 
-    @SuppressWarnings("unused")
-    public ConfigModule(Class<T> configClass, String envPrefix, String sysPrefix) {
-        this.configClass = configClass;
-        this.envPrefix = envPrefix;
-        this.sysPrefix = sysPrefix;
+    public ConfigModule(T configObject) {
+        this.configObject = configObject;
     }
 
     private final Logger log = LoggerFactory.getLogger(getClass());
@@ -28,17 +26,12 @@ public class ConfigModule<T> extends AbstractModule {
     @Override
     protected void configure() {
         try {
-            final T configObject = ConfigHelper.getConfigObject(configClass, envPrefix, sysPrefix);
-            bind(configClass).
-                    toInstance(configObject);
-            bind(ConfigHandler.class).
-                    toInstance(new ConfigHandler<T>(configObject));
-            bind(ConfigService.class).
-                    toInstance(new ConfigService<T>(configObject));
+            bind(ConfigHandler.class).toInstance(new ConfigHandler<T>(configObject));
+            bind(ConfigService.class).toInstance(new ConfigService<T>(configObject));
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
 
+    }
 
 }

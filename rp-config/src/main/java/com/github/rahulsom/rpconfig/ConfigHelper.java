@@ -16,16 +16,19 @@ import java.util.regex.Pattern;
 /**
  * Created by rahul on 3/12/16.
  */
-class ConfigHelper {
+public class ConfigHelper {
 
     static <T> T getConfigObject(Class<T> configClass, String envPrefix, String sysPrefix) throws Exception {
-        final ConfigData configData = ConfigData.of(builder -> {
-            ConfigHelper.loadExternalConfiguration(builder);
-            builder.env(envPrefix);
-            builder.sysProps(sysPrefix);
-            builder.build();
-        });
+        final ConfigData configData = ConfigData.of(builder -> configure(builder, envPrefix, sysPrefix));
         return configData.get("/app", configClass);
+    }
+
+    @SuppressWarnings("WeakerAccess")
+    public static ConfigData configure(ConfigDataBuilder builder, String envPrefix, String sysPrefix) {
+        return ConfigHelper.loadExternalConfiguration(builder)
+                .env(envPrefix)
+                .sysProps(sysPrefix)
+                .build();
     }
 
     static ConfigDataBuilder loadExternalConfiguration(final ConfigDataBuilder configDataBuilder) {
