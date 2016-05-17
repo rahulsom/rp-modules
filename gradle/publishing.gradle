@@ -13,7 +13,6 @@ buildscript {
 apply plugin: "com.bmuschko.nexus"
 apply plugin: 'io.codearte.nexus-staging'
 
-
 modifyPom {
     project {
         url 'https://github.com/rahulsom/rp-modules'
