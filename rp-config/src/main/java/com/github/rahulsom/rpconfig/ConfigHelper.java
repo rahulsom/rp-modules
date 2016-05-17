@@ -31,7 +31,7 @@ public class ConfigHelper {
                 .build();
     }
 
-    static ConfigDataBuilder loadExternalConfiguration(final ConfigDataBuilder configDataBuilder) {
+    private static ConfigDataBuilder loadExternalConfiguration(final ConfigDataBuilder configDataBuilder) {
 
         final List<String> configurationLocations = Arrays.asList(
                 "application.yml",
@@ -41,6 +41,8 @@ public class ConfigHelper {
                 "config/application.json",
                 "config/application.properties"
         );
+
+        loadClasspathConfiguration(configDataBuilder, "git.properties");
 
         for (String configurationLocation : configurationLocations) {
             loadClasspathConfiguration(configDataBuilder, configurationLocation);
