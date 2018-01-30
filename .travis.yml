@@ -1,0 +1,10 @@
+language: groovy
+cache:
+  directories:
+  - "$HOME/.grails/wrapper"
+  - "$HOME/.grails/caches"
+  - "$HOME/.m2"
+script: "./travis.sh"
+env:
+  global:
+    secure: jwNMJ4WCrtr9+SlXCxb+3SnkVTZFjdEiFRyG8CM1OhuGfZZ37oYFyKxKNDezPd5fGzafT6zOJvvfDiAdWe+Qk4efCy7h/v9lw90pDP/g/vMQqiliPNIBEaa0pbYWhEz5Rf3URfwGUPCD+EVTWdvoRkptEjvXoQz4oPllt96nC3ttoZmZK0PPWnfTRMuCBbB+aNTDAWwOyjRDo3I0lpq0QpCS/ZiIIr6nzT89aw+a5v5VeNpiRXdqB9FDqKSb8PvP0GvwWGvaocH/+GGzrluJPg6qcgys2SN6Y9DZfQxzLYmCG6y+Lv8r+weAkXvF/71IXAsBV3gR3DTd9zdbC0nFA3CmJkjdmaGtInXC8hcBcQcUOptnM3YvKy7Au9zhJhvqpRfhKti0BIO5zHTY4pD7ffpYn2bzOmIyBEx/hMgfVFqrOIV8Po1eR9yWA/HeDdinEmIRGPWaYuPXr1PLEXi88tQhonkCMgtyGuyzKOeIT38ZbKfXEbzf2hhEPnBQO5RW/fWmXKyeiQollYlIMHigbkdU8jmU4FQ/gP/rAb39j9O4wAjLKIZ56BegsBo6iOfj2GZN0fwRbon1vjVDZ7LXd7os4Dvcc5MM1GpjJSUjELpGVZEBQ3ezXts5Hkmb6xSW+meQBORkUllMMlLvZMRGnV8Ed7kilF6LdGQEV7nVdlU=

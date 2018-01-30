@@ -9,9 +9,13 @@ buildscript {
         classpath 'com.netflix.nebula:gradle-extra-configurations-plugin:3.0.3'
         classpath "com.bmuschko:gradle-nexus-plugin:2.3.1"
         classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.5.3"
+        classpath "com.netflix.nebula:nebula-release-plugin:6.2.0"
+        classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.5.3"
     }
 }
 
+apply plugin: "nebula.release"
+apply plugin: 'io.codearte.nexus-staging'
 
 subprojects {
 
@@ -20,7 +24,6 @@ subprojects {
     apply plugin: 'groovy'
 
     group = "com.github.rahulsom"
-    version = "0.1-SNAPSHOT"
 
     repositories {
         jcenter()
@@ -35,4 +38,20 @@ subprojects {
         testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
     }
 
+}
+
+tasks.findByName('release').dependsOn ':rp-config:uploadArchives', ':rp-i18n-json:uploadArchives'
+
+
+project.afterEvaluate {
+    project.tasks.findByName('closeRepository').mustRunAfter ':rp-config:uploadArchives', ':rp-i18n-json:uploadArchives'
+
+    if (!version.toString().endsWith('-SNAPSHOT')) {
+        tasks.release.dependsOn 'closeAndPromoteRepository'
+    }
+}
+
+nexusStaging {
+    delayBetweenRetriesInMillis = 10000
+    numberOfRetries = 30
 }
