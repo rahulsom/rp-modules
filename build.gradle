@@ -34,7 +34,7 @@ subprojects {
         provided 'io.ratpack:ratpack-guice:1.5.4'
 
         testCompile 'io.ratpack:ratpack-test:1.6.0'
-        testCompile "org.codehaus.groovy:groovy-all:2.5.4"
+        testCompile "org.codehaus.groovy:groovy-all:2.5.5"
         testCompile "org.spockframework:spock-core:1.2-groovy-2.5"
     }
 
