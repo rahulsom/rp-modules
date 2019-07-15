@@ -30,7 +30,7 @@ subprojects {
     }
 
     dependencies {
-        provided 'io.ratpack:ratpack-core:1.5.4'
+        provided 'io.ratpack:ratpack-core:1.7.0'
         provided 'io.ratpack:ratpack-guice:1.5.4'
 
         testCompile 'io.ratpack:ratpack-test:1.6.1'
