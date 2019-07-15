@@ -31,7 +31,7 @@ subprojects {
 
     dependencies {
         provided 'io.ratpack:ratpack-core:1.5.4'
-        provided 'io.ratpack:ratpack-guice:1.5.4'
+        provided 'io.ratpack:ratpack-guice:1.7.0'
 
         testCompile 'io.ratpack:ratpack-test:1.6.1'
         testCompile "org.codehaus.groovy:groovy-all:2.5.7"
