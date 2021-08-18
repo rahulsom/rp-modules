@@ -38,3 +38,14 @@ project.afterEvaluate {
         tasks.release.dependsOn 'closeAndPromoteRepository'
     }
 }
+
+abstract class RatpackAlignmentRule implements ComponentMetadataRule {
+    void execute(ComponentMetadataContext ctx) {
+        ctx.details.with {
+            if (id.group.equals("io.ratpack")) {
+                // declare that Jackson modules all belong to the Jackson virtual platform
+                belongsTo("io.ratpack:ratpack-virtual-platform:${id.version}")
+            }
+        }
+    }
+}
