@@ -20,11 +20,10 @@ public class ConfigHelper {
 
     static <T> T getConfigObject(Class<T> configClass, String envPrefix, String sysPrefix) throws Exception {
         final ConfigData configData = ConfigData.of(builder -> configure(builder, envPrefix, sysPrefix));
-        return configData.get("/app", configClass);
+        return configData.get( configClass);
     }
 
-    @SuppressWarnings("WeakerAccess")
-    public static ConfigData configure(ConfigDataBuilder builder, String envPrefix, String sysPrefix) {
+    private static ConfigData configure(ConfigDataBuilder builder, String envPrefix, String sysPrefix) {
         return ConfigHelper.loadExternalConfiguration(builder)
                 .env(envPrefix)
                 .sysProps(sysPrefix)

@@ -1,8 +1,5 @@
-apply from: '../gradle/publishing.gradle'
-
-modifyPom {
-    project {
-        name 'Ratpack i18n JSON'
-        description 'Adds support for serving i18n Message Bundles using JSON'
-    }
+plugins {
+    id("com.github.rahulsom.waena.published")
 }
+
+description = 'Adds support for serving i18n Message Bundles using JSON'
