@@ -1,3 +1,20 @@
+import com.gradle.scan.plugin.PublishedBuildScan
+
+plugins {
+    id "com.gradle.enterprise" version "3.6.3"
+}
+
+gradleEnterprise {
+    buildScan {
+        termsOfServiceUrl = "https://gradle.com/terms-of-service"
+        termsOfServiceAgree = "yes"
+        publishAlways()
+        buildScanPublished { PublishedBuildScan scan ->
+            file("build/gradle-scan.md").text = """Gradle Build Scan - [`${scan.buildScanId}`](${scan.buildScanUri})"""
+        }
+    }
+}
+
 include 'rp-config', 'rp-i18n-json'
 
 rootProject.name = 'rp-modules'

@@ -28,17 +28,6 @@ subprojects {
 
 }
 
-tasks.findByName('release').dependsOn ':rp-config:uploadArchives', ':rp-i18n-json:uploadArchives'
-
-
-project.afterEvaluate {
-    project.tasks.findByName('closeRepository').mustRunAfter ':rp-config:uploadArchives', ':rp-i18n-json:uploadArchives'
-
-    if (!version.toString().endsWith('-SNAPSHOT')) {
-        tasks.release.dependsOn 'closeAndPromoteRepository'
-    }
-}
-
 abstract class RatpackAlignmentRule implements ComponentMetadataRule {
     void execute(ComponentMetadataContext ctx) {
         ctx.details.with {

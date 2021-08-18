@@ -19,7 +19,7 @@ class ConfigSpec extends Specification {
     }
 
     @Rule
-    public final EnvironmentVariables environmentVariables = new EnvironmentVariables();
+    public EnvironmentVariables environmentVariables = new EnvironmentVariables();
 
     @AutoCleanup
     EmbeddedApp app = EmbeddedApp.of({ spec ->
