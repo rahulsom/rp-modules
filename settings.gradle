@@ -10,6 +10,7 @@ gradleEnterprise {
         termsOfServiceAgree = "yes"
         publishAlways()
         buildScanPublished { PublishedBuildScan scan ->
+            file("build").mkdirs()
             file("build/gradle-scan.md").text = """Gradle Build Scan - [`${scan.buildScanId}`](${scan.buildScanUri})"""
         }
     }
