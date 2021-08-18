@@ -3,6 +3,15 @@ plugins {
     id("com.github.rahulsom.waena.published").version("0.3.1").apply(false)
 }
 
+contacts {
+    validateEmails = true
+    'rahulsom@noreply.github.com' {
+        moniker("Rahul Somasunderam")
+        roles("owner")
+        github("https://github.com/rahulsom")
+    }
+}
+
 subprojects {
 
     apply plugin: 'java'
