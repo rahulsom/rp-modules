@@ -10,14 +10,14 @@ import ratpack.jackson.Jackson;
 @SuppressWarnings("WeakerAccess")
 public class ConfigHandler<T> implements Handler {
 
-    private T configObject;
+    private final T configObject;
 
     ConfigHandler(T configObject) {
         this.configObject = configObject;
     }
 
     @Override
-    public void handle(Context ctx) throws Exception {
+    public void handle(Context ctx) {
         ctx.render(Jackson.json(configObject));
     }
 }

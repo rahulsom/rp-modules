@@ -26,12 +26,11 @@ public class ConfigModule<T> extends AbstractModule {
     @Override
     protected void configure() {
         try {
-            bind(ConfigHandler.class).toInstance(new ConfigHandler<T>(configObject));
-            bind(ConfigService.class).toInstance(new ConfigService<T>(configObject));
+            bind(ConfigHandler.class).toInstance(new ConfigHandler<>(configObject));
+            bind(ConfigService.class).toInstance(new ConfigService<>(configObject));
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
 }
