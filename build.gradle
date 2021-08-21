@@ -25,7 +25,7 @@ subprojects {
 
     dependencies {
         compileOnly 'io.ratpack:ratpack-core:1.9.0'
-        compileOnly 'io.ratpack:ratpack-guice:1.2.0'
+        compileOnly 'io.ratpack:ratpack-guice:1.9.0'
 
         testImplementation 'io.ratpack:ratpack-test:1.9.0'
         testImplementation 'io.ratpack:ratpack-guice:1.2.0'
