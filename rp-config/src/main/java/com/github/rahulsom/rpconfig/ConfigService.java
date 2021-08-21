@@ -52,7 +52,7 @@ class ConfigService<T> implements Service {
 
     private static class GroovyAwareRepresenter extends Representer {
         @Override
-        protected Set<Property> getProperties(Class<? extends Object> type) throws IntrospectionException {
+        protected Set<Property> getProperties(Class<? extends Object> type) {
             Set<Property> properties = super.getProperties(type);
             properties.removeIf(property -> property.getName().equals("metaClass"));
             return properties;
